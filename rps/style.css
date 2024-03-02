@@ -1,0 +1,98 @@
+*{
+    color: black;
+}
+body{
+    padding-left: 4%;
+    padding-right: 4%;
+    background-image: url('./images/bg.jpg');
+    background-size: cover;
+}
+.heading{
+    color:white;
+    text-align: center;
+    font-size: 65px;
+    font-family: cursive;
+}
+button{
+    border:none;
+    color:black;
+    border-radius: 100px;
+    background-color: transparent;
+}
+.button{
+    margin-top:6%;
+    display:flex;                
+    justify-content: space-around;
+    color: white;
+}
+.r{
+    box-shadow: 12px 5px 10px rgb(75, 69, 69);
+}
+.p{
+    box-shadow: 12px 5px 10px rgb(75, 69, 69);
+}
+.s{
+    box-shadow: 12px 5px 10px rgb(75, 69, 69);
+}
+.re{
+    box-shadow: 12px 5px 10px rgb(75, 69, 69);
+}
+.r:hover{
+    transition: 1s;
+    transform: translateY(-18px);
+    box-shadow: 10px 5px 10px black;
+}
+.p:hover{
+    transition: 1s;
+    transform: translateY(-18px);
+    box-shadow: 10px 5px 10px black;
+}
+.s:hover{
+    transition: 1s;
+    transform: translateY(-18px);
+    box-shadow: 9px 5px 10px black;
+}
+.re:hover{
+    transition: 1s;
+    transform: translateY(-18px);
+    box-shadow: 9px 5px 10px black;
+}
+.buttons :hover{
+    cursor:pointer;
+}
+.buttons :active{
+    background-color: rgba(0, 0, 0, 0.65);
+}
+.buttons h1{
+    font-family: cursive;
+}
+.go{
+    white-space:nowrap;
+    overflow:hidden;
+    padding: 0;
+    animation: animate 1.5s linear infinite forwards;
+}
+.go p{
+    text-align: center;
+    font-size: 55px;
+    color:white;
+}
+img{
+    height:200px;
+    width:200px;
+    border-radius: 100px;
+    background-color: transparent;
+    filter: blur(1.5px);
+    border: 5px solid;
+    border-radius: 100px;
+    border-color: black;
+}
+
+@keyframes animate{
+    from{
+        width:0px;
+    }
+    to{
+        width:250px;
+    }
+}
