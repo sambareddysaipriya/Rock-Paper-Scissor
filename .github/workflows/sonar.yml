@@ -1,1 +1,36 @@
-hi
+name: SonarQube Analysis
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  sonarQubeScan:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 17 (required for SonarScanner)
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+
+      - name: Install SonarQube Scanner
+        run: |
+          choco install sonarqube-scanner
+
+      - name: Run SonarQube Scanner
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Ensure this is set up in GitHub Secrets
+        run: |
+          sonar-scanner -Dsonar.projectKey=GithubDemo \
+                         -Dsonar.sources=. \
+                         -Dsonar.host.url=http://localhost:9000 \
+                         -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+
