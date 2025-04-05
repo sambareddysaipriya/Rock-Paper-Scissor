@@ -16,21 +16,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up JDK 17 (required for SonarScanner)
-        uses: actions/setup-java@v2
-        with:
-          java-version: '17'
-
+      # Step to Install SonarQube Scanner
       - name: Install SonarQube Scanner
         run: |
           choco install sonarqube-scanner
 
+      # Step to Run SonarQube Scanner
       - name: Run SonarQube Scanner
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Ensure this is set up in GitHub Secrets
         run: |
           sonar-scanner -Dsonar.projectKey=GithubDemo \
                          -Dsonar.sources=. \
-                         -Dsonar.host.url=http://localhost:9000 \
+                         -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }}  # Ensure this points to your SonarQube URL
                          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-
