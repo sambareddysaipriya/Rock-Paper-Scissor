@@ -13,20 +13,13 @@ jobs:
     runs-on: windows-latest
 
     steps:
+      # Step 1: Checkout code
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Step to Install SonarQube Scanner
-      - name: Install SonarQube Scanner
-        run: |
-          choco install sonarqube-scanner
-
-      # Step to Run SonarQube Scanner
-      - name: Run SonarQube Scanner
+      # Step 2: Run SonarQube Analysis using SonarSource's GitHub Action
+      - name: Run SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v4
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Ensure this is set up in GitHub Secrets
-        run: |
-          sonar-scanner -Dsonar.projectKey=GithubDemo \
-                         -Dsonar.sources=. \
-                         -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }}  # Ensure this points to your SonarQube URL
-                         -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
